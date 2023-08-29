@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "email": "Rebekah.Parisian@yahoo.com",
+      "password": "$2a$10$jCL./qcomhFEjKT7b43jGe1KQ6tCUmsJmURInWa.hIBZIlRbAGV2i",
+      "name": "Данил",
+      "surname": "Гордиенко",
+      "phoneNamber": "+380676400427",
+      "id": 1
+    },
+    {
+      "email": "2018danil@gmail.com",
+      "password": "$2a$10$zg983zQ78IHigitB7KvUXeX0IyjVw.t9TchVd1OZHGTzL2K5VpCcC",
+      "name": "Данил",
+      "surname": "Гордиенко",
+      "phoneNamber": "+380676400427",
+      "id": 2
+    },
+    {
+      "email": "danilpups2@gmail.com",
+      "password": "$2a$10$y1oZ9v1r4Vspe8XjZSnLeu/VaKmPeOUTjF6iS76utAaxAtG5L8JM2",
+      "name": "Данил",
+      "surname": "Гордиенко",
+      "phoneNamber": "+380676400427",
+      "id": 3
+    }
+  ]
+}
