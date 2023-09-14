@@ -7,9 +7,15 @@ import prof from "../../image/icone/profile.png";
 import "./style/preview.css";
 import Auth from "../../../Authoriz/page/Auth";
 import Register from "../../../Authoriz/page/Register";
+import { useContext } from "react";
+import { CustomContext } from "../../../utils/Context";
+import { useNavigate } from "react-router-dom";
 
-function Preview({ AuthActive, handleClick, isLogin, LogIn }) {
+function Preview({ AuthActive, handleClick }) {
   const [RegActive, setRegActive] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useContext(CustomContext);
+
   function openLoginPage(href) {
     window.location.href = `${href}`;
   }
@@ -40,10 +46,10 @@ function Preview({ AuthActive, handleClick, isLogin, LogIn }) {
           <img src={vk} alt="404"></img>
           <img src={yuo} alt="404"></img>
         </div>
-        {isLogin ? (
+        {user.email.length ? (
           <div
             className="preview__profile"
-            onClick={() => openLoginPage("/personal")}
+            onClick={() => navigate("/personal")}
           >
             <img src={prof} alt="404"></img>
             <div className="preview__profile-txt">
@@ -61,11 +67,9 @@ function Preview({ AuthActive, handleClick, isLogin, LogIn }) {
         )}
       </div>
       <Auth
-        LogIn={LogIn}
         handleClick={handleClick}
         RegActive={swapRegister}
         AuthActive={AuthActive}
-        isLogin={isLogin}
       />
       <Register RegActive={RegActive} handleClick={closeRegister} />
     </section>

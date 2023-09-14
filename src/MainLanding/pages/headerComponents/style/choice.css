@@ -7,7 +7,11 @@
   max-width: 1400px;
 }
 .choice__all {
+  cursor: pointer;
   display: flex;
+  color: black;
+}
+.choice__all.active {
   color: #725fee;
 }
 .choice__all img {
@@ -18,18 +22,25 @@
 .choice__nav {
   display: flex;
 }
-.choice__nav li {
+.choice__nav-item {
+  cursor: pointer;
   list-style: none;
   margin-right: 100px;
 }
+.choice__nav-item:hover {
+  color: #725fee;
+}
+.choice__nav-item.active {
+  color: #725fee;
+}
 @media (max-width: 1250px) {
-  .choice__nav li {
+  .choice__nav-item {
     list-style: none;
     margin-right: 70px;
   }
 }
 @media (max-width: 1000px) {
-  .choice__nav li {
+  .choice__nav-item {
     font-size: 15px;
     list-style: none;
     margin-right: 28px;

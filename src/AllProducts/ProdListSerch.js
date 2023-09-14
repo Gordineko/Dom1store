@@ -8,13 +8,14 @@ import like from "../MainLanding/image/icone/like.png";
 import Footer from "../MainLanding/pages/Footer";
 import ProductItem from "./components/ProductItem";
 import Loader from "../MainLanding/Loader";
+import { useContext } from "react";
+import { CustomContext } from "../utils/Context";
 // import Footer from "../MainLanding/pages/Footer";
 
-function Prod() {
-  const { type } = useParams();
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+function ProdListSerch() {
+  const { search } = useContext(CustomContext);
   const [isLoading, setIsLoading] = useState(true);
+  const [serch, setSerch] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,23 +24,11 @@ function Prod() {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [filteredProducts]);
-
+  }, [search]);
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/product");
-        const jsonData = await response.json();
-        setProducts(jsonData);
-      } catch (error) {
-        console.error("error fetch product data", error.message);
-      }
-    };
-    fetchData();
-  }, []);
-  useEffect(() => {
-    setFilteredProducts(products.filter((item) => item.catigory === type));
-  }, [products, type]);
+    setSerch(JSON.parse(localStorage.getItem("search")));
+  }, [search]);
 
   return (
     <>
@@ -52,7 +41,7 @@ function Prod() {
           <Header />
           <div className="container products_pad">
             <div className="products__sort">
-              <h1>{type}</h1>
+              <h1></h1>
               <Renge />
               <p> Цвет родукта</p>
               <div className="products__memory">
@@ -66,11 +55,11 @@ function Prod() {
             </div>
             <div className="products__catalog">
               <div className="products__sorting">
-                <h1>{type}</h1>
+                <h1></h1>
                 <button className="products__sorting-btn">Отсортировать</button>
               </div>
               <ul className="products">
-                {filteredProducts.map((product) => (
+                {serch.map((product) => (
                   <ProductItem key={product.id} product={product} />
                 ))}
               </ul>
@@ -83,4 +72,4 @@ function Prod() {
   );
 }
 
-export default Prod;
+export default ProdListSerch;

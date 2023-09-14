@@ -8,6 +8,7 @@
       "img3": "http://localhost:3000/image/products/iphone_11_red(3).png",
       "img4": "http://localhost:3000/image/products/iphone_11_red(4).png",
       "cost": "36 000",
+      "discount": "0.2",
       "catigory": "phones",
       "series": "iPhone 13 mini",
       "diagonal": "5.4",
@@ -27,7 +28,7 @@
       "cost": "43 000",
       "catigory": "phones",
       "type": "actual",
-
+      "discount": "",
       "series": "iPhone 14",
       "diagonal": "6.1",
       "hz": "60 Гц",
@@ -46,7 +47,7 @@
       "cost": "17 500",
       "catigory": "phones",
       "type": "actual",
-
+      "discount": "",
       "series": "iPhone SE",
       "diagonal": "4.7",
       "hz": "60 Гц",
@@ -65,7 +66,7 @@
       "cost": "37 000",
       "catigory": "phones",
       "type": "actual",
-
+      "discount": "",
       "series": "iPhone 13",
       "diagonal": "6.1",
       "hz": "60 Гц",
@@ -84,7 +85,7 @@
       "cost": "76 000",
       "catigory": "phones",
       "type": "actual",
-
+      "discount": "",
       "series": "iPhone 14 Pro Max",
       "diagonal": "6.7",
       "hz": "120 Гц",
@@ -103,7 +104,7 @@
       "cost": "43 000",
       "catigory": "phones",
       "type": "actual",
-
+      "discount": "",
       "series": "iPhone 14",
       "diagonal": "6.1",
       "hz": "60 Гц",
@@ -122,7 +123,7 @@
       "cost": "54 000",
       "catigory": "phones",
       "type": "",
-
+      "discount": "0.3",
       "series": "iPhone 14",
       "diagonal": "6.7",
       "hz": "60 Гц",
@@ -141,7 +142,7 @@
       "cost": "33999",
       "catigory": "phones",
       "type": "",
-
+      "discount": "0.2",
       "series": "iPhone 13 mini",
       "diagonal": "5.4",
       "hz": "60 Гц",
@@ -160,7 +161,7 @@
       "cost": "54 000",
       "catigory": "phones",
       "type": "",
-
+      "discount": "",
       "series": "iPhone 13 mini",
       "diagonal": "5.4",
       "hz": "60 Гц",
@@ -179,7 +180,7 @@
       "cost": "41 300",
       "catigory": "phones",
       "type": "",
-
+      "discount": "",
       "series": "iPhone 13 Pro Max",
       "diagonal": "6.7",
       "hz": "120 Гц",
@@ -198,7 +199,7 @@
       "cost": "43 300",
       "catigory": "phones",
       "type": "",
-
+      "discount": "0.1",
       "series": "iPhone 13 mini",
       "diagonal": "5.4",
       "hz": "60 Гц",
@@ -217,7 +218,7 @@
       "cost": "29 500",
       "catigory": "laptops",
       "type": "",
-
+      "discount": "",
       "series": "iPad Air 2022",
       "RAM": "8 ГБ",
       "diagonal": "10.9",
@@ -236,7 +237,7 @@
       "cost": "21 900",
       "catigory": "laptops",
       "type": "",
-
+      "discount": "0.3",
       "series": "iPad 2022",
       "RAM": "8 ГБ",
       "diagonal": "10.9",
@@ -255,7 +256,7 @@
       "cost": "24 600",
       "catigory": "laptops",
       "type": "",
-
+      "discount": "0.1",
       "series": "iPad mini 2021",
       "RAM": "8 ГБ",
       "diagonal": "8.3",
@@ -274,7 +275,7 @@
       "cost": "48 500",
       "catigory": "laptops",
       "type": "",
-
+      "discount": "0.1",
       "series": "iPad Pro 2022",
       "RAM": "12 ГБ",
       "diagonal": "11",
@@ -293,7 +294,7 @@
       "cost": "22 900",
       "catigory": "laptops",
       "type": "",
-
+      "discount": "0.1",
       "series": "iPad 2021",
       "RAM": "6 ГБ",
       "diagonal": "10.2",
@@ -312,7 +313,7 @@
       "cost": "39 999",
       "catigory": "laptops",
       "type": "",
-
+      "discount": "0.1",
       "series": "iPad mini 2021",
       "RAM": "12 ГБ",
       "diagonal": "8.3",
@@ -331,7 +332,7 @@
       "cost": "39 999",
       "catigory": "tablets",
       "type": "",
-
+      "discount": "",
       "series": "MacBook Pro 2022",
       "diagonal": "13.3 (2560x1600) WQXGA",
       "SSD": "256 ГБ",
@@ -350,7 +351,7 @@
       "cost": "57 499",
       "catigory": "tablets",
       "type": "",
-
+      "discount": "",
       "series": "MacBook Air 2022",
       "diagonal": "13.6 (2560x1664)",
       "SSD": "256 ГБ",
@@ -369,7 +370,7 @@
       "cost": "123 499",
       "catigory": "tablets",
       "type": "",
-
+      "discount": "",
       "series": "MacBook Pro 2023",
       "diagonal": "16.2 (3456x2234)",
       "SSD": "512 ГБ",
@@ -388,7 +389,7 @@
       "cost": "122 499",
       "catigory": "tablets",
       "type": "",
-
+      "discount": "",
       "series": "MacBook Pro 2023",
       "diagonal": "14.2 (3024x1964)",
       "SSD": "1 ТБ",
@@ -407,7 +408,7 @@
       "cost": "73 199",
       "catigory": "tablets",
       "type": "",
-
+      "discount": "",
       "series": "MacBook Air 2023",
       "diagonal": "15.3 (2880x1864)",
       "SSD": "256 ГБ",
@@ -426,7 +427,7 @@
       "cost": "43 999",
       "catigory": "tablets",
       "type": "",
-
+      "discount": "",
       "series": "MacBook Air 2020",
       "diagonal": "13.3 (2560x1600) WQXGA",
       "SSD": "256 ГБ",
@@ -445,7 +446,7 @@
       "cost": "80 499",
       "catigory": "tablets",
       "type": "",
-
+      "discount": "0.2",
       "series": "MacBook Air 2022",
       "diagonal": "13.6 (2560x1664)",
       "SSD": "256 ГБ",
@@ -464,7 +465,7 @@
       "cost": "7 499",
       "catigory": "homes",
       "type": "",
-
+      "discount": "0.2",
       "weight": "Apple TV 4K: 208 г",
       "set": "Apple TV 4K, Apple TV Remote, Кабель питания, Документация",
       "registration": "США",
@@ -482,7 +483,7 @@
       "cost": "457",
       "catigory": "homes",
       "type": "",
-
+      "discount": "",
       "weight": "57г",
       "set": "HDMI адаптер",
       "registration": "США",
@@ -500,7 +501,7 @@
       "cost": "1 899",
       "catigory": "homes",
       "type": "",
-
+      "discount": "0.1",
       "weight": "116г",
       "set": "Гироскоп Model",
       "registration": "США",
@@ -518,7 +519,7 @@
       "cost": "270",
       "catigory": "homes",
       "type": "",
-
+      "discount": "",
       "weight": "20г",
       "set": "Guard Shell",
       "registration": "Китай",
@@ -536,7 +537,7 @@
       "cost": "237",
       "catigory": "homes",
       "type": "",
-
+      "discount": "",
       "weight": "20г",
       "set": "Guard Shell",
       "registration": "Китай",
@@ -554,7 +555,7 @@
       "cost": "13 500",
       "catigory": "consoles",
       "type": "",
-
+      "discount": "",
       "CPU": "8-ядерный процессор Custom Zen 2 с тактовой частотой @ 3,6 ГГц",
       "RAM": "10 ГБ",
       "games": "Нет",
@@ -573,7 +574,7 @@
       "cost": "23 995",
       "catigory": "consoles",
       "type": "",
-
+      "discount": "0.25",
       "CPU": "8-ядерный процессор Custom Zen 2 с тактовой частотой @ 3.8 ГГц ",
       "RAM": "16 ГБ",
       "games": "Нет",
@@ -592,7 +593,7 @@
       "cost": "10 100",
       "catigory": "consoles",
       "type": "",
-
+      "discount": "",
       "CPU": "Custom CPU x86-64 2.3 ГГц",
       "RAM": "12 Гб",
       "games": "Нет",
@@ -611,7 +612,7 @@
       "cost": "26 352",
       "catigory": "consoles",
       "type": "",
-
+      "discount": "",
       "CPU": "Custom Zen",
       "RAM": "16ГБ",
       "games": "Diablo IV",
@@ -630,7 +631,7 @@
       "cost": "22 300",
       "catigory": "consoles",
       "type": "",
-
+      "discount": "0.1",
       "CPU": "8-ядерный x86-64 AMD Ryzen Zen 2 (Частота: до 3.5 ГГц)",
       "RAM": "GDDR6 16 ГБ",
       "games": "Нет",
@@ -649,7 +650,7 @@
       "cost": "12 600",
       "catigory": "clocks",
       "type": "",
-
+      "discount": "0.3",
       "series": "Apple Watch SE",
       "size": "40 x 34 x 10.7",
       "compatible": "iOS",
@@ -668,7 +669,7 @@
       "cost": "19 999",
       "catigory": "clocks",
       "type": "",
-
+      "discount": "0.2",
       "series": "Apple Watch Series 8",
       "size": "41 x 35 x 10.7",
       "compatible": "iOS",
@@ -687,7 +688,7 @@
       "cost": "39 999",
       "catigory": "clocks",
       "type": "",
-
+      "discount": "0.1",
       "series": "Apple Watch Ultra",
       "size": "49 x 44 x 14.4",
       "compatible": "iOS",
@@ -706,7 +707,7 @@
       "cost": "20 999",
       "catigory": "clocks",
       "type": "",
-
+      "discount": "",
       "series": "Apple Watch Series 8",
       "size": "41 x 35 x 10.7",
       "compatible": "iOS",
@@ -725,7 +726,7 @@
       "cost": "19 999",
       "catigory": "clocks",
       "type": "",
-
+      "discount": "",
       "series": "Apple Watch Series 8",
       "size": "41 x 35 x 10.7",
       "compatible": "iOS",
@@ -744,7 +745,7 @@
       "cost": "2 500",
       "catigory": "games",
       "type": "",
-
+      "discount": "",
       "platform": "PlayStation 5",
       "carrier": "CD",
       "genre": "Action , Шутер от первого лица (FPS)",
@@ -762,7 +763,7 @@
       "cost": "1 499",
       "catigory": "games",
       "type": "",
-
+      "discount": "",
       "platform": "PlayStation 5",
       "carrier": "Blu-ray",
       "genre": "Action , Приключения (adventure)",
@@ -780,7 +781,7 @@
       "cost": "1 799",
       "catigory": "games",
       "type": "",
-
+      "discount": "0.2",
       "platform": "PlayStation 5",
       "carrier": "CD",
       "genre": "Ролевые (RPG)",
@@ -798,7 +799,7 @@
       "cost": "1 099",
       "catigory": "games",
       "type": "",
-
+      "discount": "0.1",
       "platform": "PlayStation 5",
       "carrier": "Blu-ray",
       "genre": "Файтинг (fighting)",
@@ -816,7 +817,7 @@
       "cost": "2 299",
       "catigory": "games",
       "type": "",
-
+      "discount": "",
       "platform": "Xbox One , Xbox Series",
       "carrier": "Blu-ray",
       "genre": "Ролевые (RPG) Action",
@@ -834,7 +835,7 @@
       "cost": "2 500",
       "catigory": "games",
       "type": "",
-
+      "discount": "",
       "platform": "Xbox One ",
       "carrier": "Blu-ray",
       "genre": "Ролевые (RPG)",
@@ -852,7 +853,7 @@
       "cost": "189 944",
       "catigory": "computers",
       "type": "",
-
+      "discount": "",
       "video": "GeForce RTX 4090",
       "chipset": "AMD X670",
       "RAM": "64 ГБ",
@@ -871,7 +872,7 @@
       "cost": "39 999",
       "catigory": "computers",
       "type": "",
-
+      "discount": "0.1",
       "video": "GeForce RTX 3060 Ti",
       "chipset": "Intel B660",
       "RAM": "16 ГБ",
@@ -890,7 +891,7 @@
       "cost": "37 800",
       "catigory": "computers",
       "type": "",
-
+      "discount": "0.2",
       "video": "GeForce RTX 3060 Ti",
       "chipset": "Intel B460 (PRIME B460M-A)",
       "RAM": "16 ГБ",
@@ -909,7 +910,7 @@
       "cost": "112 000",
       "catigory": "computers",
       "type": "",
-
+      "discount": "0.1",
       "video": "GeForce RTX 4070 Ti",
       "chipset": "Intel Z690",
       "RAM": "64 ГБ",
@@ -928,7 +929,7 @@
       "cost": "19 788",
       "catigory": "computers",
       "type": "",
-
+      "discount": "0.2",
       "video": "GeForce GTX 1650",
       "chipset": "AMD A320",
       "RAM": "16 ГБ",
@@ -947,7 +948,7 @@
       "cost": "202 000",
       "catigory": "computers",
       "type": "",
-
+      "discount": "",
       "video": "GeForce RTX 4090",
       "chipset": "Intel Z690",
       "RAM": "128 ГБ",
@@ -966,7 +967,7 @@
       "cost": "491 000",
       "catigory": "computers",
       "type": "",
-
+      "discount": "0.1",
       "video": "GeForce RTX 4090",
       "chipset": "AMD WRX80",
       "RAM": "256 ГБ",

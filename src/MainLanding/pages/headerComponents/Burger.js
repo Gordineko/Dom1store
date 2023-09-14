@@ -9,8 +9,13 @@ import apple from "../../image/icone/applestore.png";
 import telegram from "../../image/company/telegram.png";
 import vk from "../../image/company/vk.png";
 import youtub from "../../image/company/youtube.png";
+import { useContext } from "react";
+import { CustomContext } from "../../../utils/Context";
+import { useNavigate } from "react-router-dom";
 
-function Burger({ isActive, handleClick, AuthClick, isLogin }) {
+function Burger({ isActive, handleClick, AuthClick }) {
+  const navigate = useNavigate();
+  const { user } = useContext(CustomContext);
   return (
     <div className={isActive ? "burger-menu active" : "burger-menu inactive"}>
       <div className="burger-menu_prew">
@@ -21,12 +26,16 @@ function Burger({ isActive, handleClick, AuthClick, isLogin }) {
         <div className="burger-menu__profile_img">
           <img src={prof} alt="404" />
         </div>
-        {isLogin ? (
+        {user.email.length ? (
           <div className="profile__content">
-            <div className="profile__content_txt" onClick={AuthClick}>
+            <div
+              className="profile__content_txt"
+              onClick={() => navigate("/personal")}
+            >
               <div className="profile__content_reg">
                 <span>Личный кобинет</span>
               </div>
+              
             </div>
             <span>Вы успешно авторизованы</span>
           </div>

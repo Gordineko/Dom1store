@@ -3,7 +3,7 @@ import "../style/register.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import remove from "../../MainLanding/image/icone/remove.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { CustomContext } from "../../utils/Context";
 
@@ -21,10 +21,10 @@ const SigninSchema = Yup.object().shape({
     .required("Поле должно быть заполнено"),
 });
 
-function Auth({ handleClick, RegActive }) {
-  const context = useContext(CustomContext);
+function Register({ handleClick, RegActive }) {
+  const { user, setUser } = useContext(CustomContext);
 
-  console.log(context);
+  const navigate = useNavigate();
 
   function registerUser(values) {
     let User = values;
@@ -32,7 +32,21 @@ function Auth({ handleClick, RegActive }) {
 
     axios
       .post("http://localhost:3330/register", User)
-      .then((res) => console.log(res))
+      .then(({ data }) => {
+        setUser({
+          token: data.accessToken,
+          ...data.user,
+        });
+
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            token: data.accessToken,
+            ...data.user,
+          })
+        );
+        handleClick();
+      })
       .catch((err) => console.log(err.message));
   }
 
@@ -119,4 +133,4 @@ function Auth({ handleClick, RegActive }) {
   );
 }
 
-export default Auth;
+export default Register;

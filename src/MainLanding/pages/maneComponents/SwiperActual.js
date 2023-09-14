@@ -5,13 +5,16 @@ import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import { useNavigate } from "react-router-dom";
 import stat from "../../image/icone/statistic.png";
 import like from "../../image/icone/like.png";
+import ProductItem from "../../../AllProducts/components/ProductItem";
 
 export default function App() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [findProduct, setFindProduct] = useState();
   const [slidesPerView, setSlidesPerView] = useState(4);
 
   const updateSlidesPerView = () => {
@@ -42,6 +45,13 @@ export default function App() {
     setFilteredProducts(data.filter((item) => item.type === "actual"));
   }, [data]);
 
+  function fetchProduct(target) {
+    const product = data.find((item) => item.name === target);
+    if (product) {
+      navigate(`/${product.catigory}/${product.name}`);
+    }
+  }
+
   return (
     <section className="swiper">
       <div className="swiper__title">
@@ -55,21 +65,14 @@ export default function App() {
         className="mySwiper"
       >
         {filteredProducts.map((item) => (
-          <SwiperSlide id="slide" key={item.id}>
-            <div className="swiper__conteiner_img">
-              <img src={item.img} alt="sad" />
-            </div>
-            <div>
-              <div className="swiper__titles">
-                <span>{item.name}</span>
-              </div>
-              <p>{item.cost}</p>
-              <div className="swider_item_do">
-                <button className="product__btn">В корзину</button>
-                <img src={stat} alt="404" />
-                <img src={like} alt="404" />
-              </div>
-            </div>
+          <SwiperSlide
+            id="slide"
+            key={item.id}
+            onClick={() => {
+              fetchProduct(item.name);
+            }}
+          >
+            <ProductItem product={item} />
           </SwiperSlide>
         ))}
       </Swiper>

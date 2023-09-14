@@ -13,12 +13,13 @@ function Product() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 500);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [filteredProducts]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +36,7 @@ function Product() {
   useEffect(() => {
     setFilteredProducts(products.filter((item) => item.name === name));
   }, [products, name]);
-  console.log(filteredProducts, name);
+
   return (
     <>
       {isLoading ? (

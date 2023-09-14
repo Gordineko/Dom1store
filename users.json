@@ -9,20 +9,28 @@
       "id": 1
     },
     {
-      "email": "2018danil@gmail.com",
-      "password": "$2a$10$zg983zQ78IHigitB7KvUXeX0IyjVw.t9TchVd1OZHGTzL2K5VpCcC",
+      "email": "Rebeksah.Parisian@yahoo.com",
+      "password": "$2a$10$twyCHDIeBxw.YZWHiUjsPuto25rf64GN/LY1NZrOaufixJwEFxaFu",
       "name": "Данил",
       "surname": "Гордиенко",
       "phoneNamber": "+380676400427",
       "id": 2
     },
     {
-      "email": "danilpups2@gmail.com",
-      "password": "$2a$10$y1oZ9v1r4Vspe8XjZSnLeu/VaKmPeOUTjF6iS76utAaxAtG5L8JM2",
+      "email": "2018danil@gmail.com",
+      "password": "$2a$10$meVqqcqUmtkTVxm2TidtBe2yf7NjwQPdPsJFARvgpyuMhhbnbCN6m",
       "name": "Данил",
       "surname": "Гордиенко",
       "phoneNamber": "+380676400427",
       "id": 3
+    },
+    {
+      "email": "danilpups2@gmail.com",
+      "password": "$2a$10$G3HFk9gmYlv8c.qrS2eT4.SLfIk2qN4RqhjpwzsSxdQ9SkwgRo/eq",
+      "name": "Данил",
+      "surname": "Гордиенко",
+      "phoneNamber": "+380676400427",
+      "id": 4
     }
   ]
 }

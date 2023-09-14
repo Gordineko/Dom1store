@@ -1,33 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import stat from "../../MainLanding/image/icone/statistic.png";
 import like from "../../MainLanding/image/icone/like.png";
+import { useNavigate } from "react-router-dom";
 
 function ProductItem(props) {
+  const [focus, setFocus] = useState();
   const { product } = props;
+  const navigate = useNavigate();
+  const costs = parseFloat(product.cost.replace(/[ ,]/g, ""));
+  const buyin = Math.round(costs - costs * product.discount);
+  const percent = product.discount * 100;
 
-  function handleClick(href) {
-    console.log("asd");
-    window.location.href = `${href}`;
+  const handleButtonClick = (buttonIndex) => {
+    setFocus(buttonIndex);
+  };
+
+  function handleClick(catigory, name) {
+    navigate(`/${catigory}/${name}`);
+  }
+
+  function hoverProducts() {
+    console.log(product.id);
   }
 
   return (
     <div
       className="prod"
-      onClick={() => handleClick(`/${product.catigory}/${product.name}`)}
+      onClick={() => handleClick(product.catigory, product.name)}
+      onMouseEnter={(e) => {
+        handleButtonClick(product.id);
+      }}
+      onMouseLeave={(e) => {
+        setFocus(!focus);
+      }}
     >
       <div className="product__conteiner_img">
-        <img src={product.img} alt="sad" />
+        <img
+          src={focus === product.id ? product.img2 : product.img}
+          alt="404"
+        />
       </div>
       <div className="product__content">
         <div className="product__titles">
           <span>{product.name}</span>
         </div>
-        <p>{product.cost + " ₴"}</p>
+        <div className="product__costs">
+          <p
+            className={
+              product.discount === ""
+                ? "product__cost without-discount"
+                : "product__cost with-discount"
+            }
+          >
+            {product.cost + " ₴"}
+          </p>
+          <p className="product__discount">
+            {product.discount === "" ? "" : buyin + " ₴"}
+          </p>
+        </div>
         <div className="product_item_do">
           <button className="product__btn">В корзину</button>
           <img src={stat} alt="404" />
           <img src={like} alt="404" />
         </div>
+      </div>
+      <div
+        className={
+          percent === 0 || focus === product.id
+            ? "prod__description"
+            : "prod__description hover"
+        }
+      >
+        <span>{percent + "%"}</span>
       </div>
     </div>
   );

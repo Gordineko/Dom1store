@@ -8,17 +8,6 @@ import Burger from "./headerComponents/Burger";
 function Header() {
   const [AuthActive, setAuthActive] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [isLogin, setIsLogin] = useState(() => {
-    const storedValue = localStorage.getItem("isLogin");
-    return storedValue === "true";
-  });
-  useEffect(() => {
-    localStorage.setItem("isLogin", isLogin.toString());
-  }, [isLogin]);
-
-  function LogIn() {
-    setIsLogin(!isLogin);
-  }
 
   function openAuth() {
     setAuthActive(!AuthActive);
@@ -36,17 +25,11 @@ function Header() {
       <Burger
         isActive={isActive}
         AuthActive={AuthActive}
-        isLogin={isLogin}
         handleClick={toggleClass}
         AuthClick={openMobileAuth}
       />
       {isActive && <div className="overlay"></div>}
-      <Preview
-        LogIn={LogIn}
-        handleClick={openAuth}
-        AuthActive={AuthActive}
-        isLogin={isLogin}
-      />
+      <Preview handleClick={openAuth} AuthActive={AuthActive} />
       <Content handleClick={toggleClass} />
       <Choice />
     </header>

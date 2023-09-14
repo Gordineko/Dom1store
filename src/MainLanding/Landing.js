@@ -15,19 +15,19 @@ function Landing() {
     return () => clearTimeout(timer);
   }, []);
   return (
-    // <>
-    //   {isLoading ? (
-    //     <div>
-    //       <Loader />
-    //     </div>
-    //   ) : (
     <>
-      <Header />
-      <Main />
-      <Footer />
+      {isLoading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        <>
+          <Header />
+          <Main />
+          <Footer />
+        </>
+      )}
     </>
-    //   )}
-    // </>
   );
 }
 

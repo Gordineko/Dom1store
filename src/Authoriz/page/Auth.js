@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import remove from "../../MainLanding/image/icone/remove.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { CustomContext } from "../../utils/Context";
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,17 +18,32 @@ const SigninSchema = Yup.object().shape({
     .required("Поле должно быть заполнено"),
 });
 
-function Auth({ AuthActive, handleClick, RegActive, LogIn }) {
+function Auth({ AuthActive, handleClick, RegActive }) {
+  const { user, setUser } = useContext(CustomContext);
+  const { error, setError } = useState(false);
+
   function loginUser(values) {
     let User = values;
     console.log(values);
 
     axios
       .post("http://localhost:3330/signin", User)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err.message))
-      .then(LogIn())
-      .then(handleClick());
+      .then(({ data }) => {
+        setUser({
+          token: data.accessToken,
+          ...data.user,
+        });
+
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            token: data.accessToken,
+            ...data.user,
+          })
+        );
+        handleClick();
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -64,6 +81,7 @@ function Auth({ AuthActive, handleClick, RegActive, LogIn }) {
                 {errors.password && touched.password ? (
                   <div className="authoriz__password-msg">
                     {errors.password}
+                    {error ? "" : "asd"}
                   </div>
                 ) : null}
                 <button className="authoriz__button" type="submit">
