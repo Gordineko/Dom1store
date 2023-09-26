@@ -4,7 +4,26 @@
   color: #000;
   cursor: pointer;
 }
-
+.header__work__btn-like {
+  position: relative;
+}
+.header__work-img-after {
+  left: 19px;
+  top: 18px;
+  font-weight: bold;
+  display: flex;
+  font-size: 12px;
+  border-radius: 6px;
+  height: 19px;
+  width: 19px;
+  position: absolute;
+  background-color: #725fee;
+  justify-content: center;
+  align-items: center;
+}
+.off {
+  display: none;
+}
 .header__content {
   margin-bottom: 40px;
   display: flex;

@@ -15,59 +15,57 @@ import { CustomContext } from "../utils/Context";
 function ProdListSerch() {
   const { search } = useContext(CustomContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [serch, setSerch] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [values, setValues] = useState([500, 150000]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
+    const parsedSearch = JSON.parse(localStorage.getItem("search"));
+    setSearchResults(parsedSearch);
+  }, [search]);
 
-    return () => clearTimeout(timer);
-  }, [search]);
-  
   useEffect(() => {
-    setSerch(JSON.parse(localStorage.getItem("search")));
-  }, [search]);
+    const filteredByValues = searchResults.filter((item) => {
+      const parsCost = parseFloat(item.cost.replace(/[ ,]/g, ""));
+      const cost = Number(parsCost);
+      return cost >= values[0] && cost <= values[1];
+    });
+
+    setFilteredProducts(filteredByValues);
+  }, [values, searchResults]);
 
   return (
     <>
-      {isLoading ? (
-        <div>
-          <Loader />
-        </div>
-      ) : (
-        <div className="products-list">
-          <Header />
-          <div className="container products_pad">
-            <div className="products__sort">
-              <h1></h1>
-              <Renge />
-              <p> Цвет родукта</p>
-              <div className="products__memory">
-                <p>Встроенная память</p>
-                <div className="products__memory_btn_group">
-                  <button className="products__memory_btn">128 гб</button>
-                  <button className="products__memory_btn">256 гб</button>
-                  <button className="products__memory_btn">1 тб</button>
-                </div>
+      <div className="products-list">
+        <Header />
+        <div className="container products_pad">
+          <div className="products__sort">
+            <h1></h1>
+            <Renge values={values} setValues={setValues} />
+            <p> Цвет родукта</p>
+            <div className="products__memory">
+              <p>Встроенная память</p>
+              <div className="products__memory_btn_group">
+                <button className="products__memory_btn">128 гб</button>
+                <button className="products__memory_btn">256 гб</button>
+                <button className="products__memory_btn">1 тб</button>
               </div>
-            </div>
-            <div className="products__catalog">
-              <div className="products__sorting">
-                <h1></h1>
-                <button className="products__sorting-btn">Отсортировать</button>
-              </div>
-              <ul className="products">
-                {serch.map((product) => (
-                  <ProductItem key={product.id} product={product} />
-                ))}
-              </ul>
             </div>
           </div>
-          <Footer />
+          <div className="products__catalog">
+            <div className="products__sorting">
+              <h1></h1>
+              <button className="products__sorting-btn">Отсортировать</button>
+            </div>
+            <ul className="products">
+              {filteredProducts.map((product) => (
+                <ProductItem key={product.id} product={product} />
+              ))}
+            </ul>
+          </div>
         </div>
-      )}
+        <Footer />
+      </div>
     </>
   );
 }

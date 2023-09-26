@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import stat from "../../MainLanding/image/icone/statistic.png";
-import like from "../../MainLanding/image/icone/like.png";
+import blackLike from "../../MainLanding/image/icone/black-heart.png";
+import purpLike from "../../MainLanding/image/icone/purp-heart.png";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CustomContext } from "../../utils/Context";
 
 function ProductItem(props) {
+  const { favored, setFavored } = useContext(CustomContext);
+  const [isFavored, setisFavored] = useState(false);
+
   const [focus, setFocus] = useState();
+
   const { product } = props;
+
   const navigate = useNavigate();
+
   const costs = parseFloat(product.cost.replace(/[ ,]/g, ""));
   const buyin = Math.round(costs - costs * product.discount);
   const percent = product.discount * 100;
 
-  const handleButtonClick = (buttonIndex) => {
+  useEffect(() => {
+    const foundItem = favored.find((item) => item.id === product.id);
+    setisFavored(foundItem !== undefined);
+  }, [favored, product]);
+
+  const handleButtonHover = (buttonIndex) => {
     setFocus(buttonIndex);
   };
 
@@ -19,8 +33,19 @@ function ProductItem(props) {
     navigate(`/${catigory}/${name}`);
   }
 
-  function hoverProducts() {
-    console.log(product.id);
+  function likeProduct(product, buttonIndex, e) {
+    e.stopPropagation();
+    setisFavored(buttonIndex);
+    if (typeof product === "object" && product !== null) {
+      const isAlreadyLiked = favored.some(
+        (favProduct) => favProduct.id === product.id
+      );
+
+      if (!isAlreadyLiked) {
+        setFavored([...favored, product]);
+        localStorage.setItem("likes", JSON.stringify([...favored, product]));
+      }
+    }
   }
 
   return (
@@ -28,7 +53,7 @@ function ProductItem(props) {
       className="prod"
       onClick={() => handleClick(product.catigory, product.name)}
       onMouseEnter={(e) => {
-        handleButtonClick(product.id);
+        handleButtonHover(product.id);
       }}
       onMouseLeave={(e) => {
         setFocus(!focus);
@@ -61,7 +86,15 @@ function ProductItem(props) {
         <div className="product_item_do">
           <button className="product__btn">В корзину</button>
           <img src={stat} alt="404" />
-          <img src={like} alt="404" />
+          <img
+            src={isFavored ? purpLike : blackLike}
+            alt="404"
+            onClick={(e) => {
+              if (likeProduct(product, product.id, e) === false) {
+                e.preventDefault();
+              }
+            }}
+          />
         </div>
       </div>
       <div

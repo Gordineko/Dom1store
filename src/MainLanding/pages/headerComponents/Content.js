@@ -14,14 +14,20 @@ import { CustomContext } from "../../../utils/Context";
 
 function Content({ handleClick }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const { search, setSearch } = useContext(CustomContext);
+  const { search, setSearch, favored, setFavored } = useContext(CustomContext);
   const [data, setData] = useState([]);
   const [products, setProducts] = useState({});
+  const [favoredLenght, setFavoredLenght] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setFavoredLenght(favored.length);
+  }, [favored]);
 
   const fetchData = () => {
     fetch("http://localhost:3000/product")
@@ -129,8 +135,22 @@ function Content({ handleClick }) {
           <button className="header__work__btn-shop">
             <img src={shop} alt="404" />
           </button>{" "}
-          <button className="header__work__btn-like">
+          <button
+            className="header__work__btn-like"
+            onClick={() => {
+              navigate("/like");
+            }}
+          >
             <img src={like} alt="404" />
+            <div
+              className={
+                favoredLenght != ""
+                  ? "header__work-img-after"
+                  : "header__work-img-after off"
+              }
+            >
+              {favoredLenght}
+            </div>
           </button>
         </div>
       </div>

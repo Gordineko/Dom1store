@@ -76,25 +76,33 @@ function Register({ handleClick, RegActive }) {
                 <label className="register__name-label" htmlFor="name">
                   Имя
                 </label>
-                <Field className="register__input name" name="name" />
+                <Field className="register__input name" name="name" id="name" />
                 {errors.name && touched.name ? (
                   <div className="register__name-msg msg">{errors.name}</div>
                 ) : null}
                 <label className="register__surname-label" htmlFor="surname">
                   Фамилия
                 </label>
-                <Field className="register__input surname" name="surname" />
+                <Field
+                  className="register__input surname"
+                  name="surname"
+                  id="surname"
+                />
                 {errors.surname && touched.surname ? (
                   <div className="register__surname-msg msg">
                     {errors.surname}
                   </div>
                 ) : null}
-                <label className="register__phoneNamber-label" htmlFor="email">
+                <label
+                  className="register__phoneNamber-label"
+                  htmlFor="phoneNamber"
+                >
                   Номер телефона
                 </label>
                 <Field
                   className="register__input phoneNamber"
                   name="phoneNamber"
+                  id="phoneNamber"
                 />
                 {errors.phoneNamber && touched.phoneNamber ? (
                   <div className="register__phoneNamber-msg msg">
@@ -107,15 +115,20 @@ function Register({ handleClick, RegActive }) {
                 <Field
                   className="register__input email"
                   name="email"
+                  id="email"
                   type="email"
                 />
                 {errors.email && touched.email ? (
                   <div className="register__email-msg msg">{errors.email}</div>
                 ) : null}
-                <label className="register__password-label" htmlFor="email">
+                <label className="register__password-label" htmlFor="password">
                   Придумайте пароль
                 </label>
-                <Field className="register__input password" name="password" />
+                <Field
+                  className="register__input password"
+                  name="password"
+                  id="password"
+                />
                 {errors.password && touched.password ? (
                   <div className="register__password-msg msg">
                     {errors.password}

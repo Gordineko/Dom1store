@@ -31,6 +31,14 @@
       "surname": "Гордиенко",
       "phoneNamber": "+380676400427",
       "id": 4
+    },
+    {
+      "email": "danilpus2@gmail.com",
+      "password": "$2a$10$mgFKAp1y0..bBgug1hz83e2uB1Y5lEx.I4GHvGQ.6N2o5gf5Q7o1y",
+      "name": "Данил",
+      "surname": "Гордиенко",
+      "phoneNamber": "+380676400427",
+      "id": 5
     }
   ]
 }

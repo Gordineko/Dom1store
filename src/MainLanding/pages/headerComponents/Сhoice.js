@@ -2,24 +2,40 @@ import React, { useEffect, useState } from "react";
 import list from "../../image/icone/list.png";
 import list_black from "../../image/icone/menu_black.png";
 import "./style/choice.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 function Сhoice() {
+  const par = useParams();
   const [activeButtonIndex, setActiveButtonIndex] = useState(1);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedIndex = localStorage.getItem("activeButtonIndex");
-    if (storedIndex !== null) {
-      setActiveButtonIndex(parseInt(storedIndex));
+    switch (par.type) {
+      case "phones":
+        setActiveButtonIndex(2);
+        break;
+      case "laptops":
+        setActiveButtonIndex(3);
+        break;
+      case "tablets":
+        setActiveButtonIndex(4);
+        break;
+      case "homes":
+        setActiveButtonIndex(5);
+        break;
+      case "consoles":
+        setActiveButtonIndex(6);
+        break;
+      default:
+        setActiveButtonIndex(1);
+        break;
     }
-  }, []);
+  }, [par]);
 
   const handleButtonClick = (buttonIndex, nav) => {
     setActiveButtonIndex(buttonIndex);
-    localStorage.setItem("activeButtonIndex", buttonIndex);
     navigate(nav);
   };
-  
+
   return (
     <section className="choice-menu">
       <div className=" container choice">

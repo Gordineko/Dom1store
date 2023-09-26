@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "./style/swiperActual.css";
-import { Navigation } from "swiper";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import SwiperCore, { Navigation } from "swiper";
+import "swiper/swiper-bundle.css";
 import { useNavigate } from "react-router-dom";
 import stat from "../../image/icone/statistic.png";
 import like from "../../image/icone/like.png";
 import ProductItem from "../../../AllProducts/components/ProductItem";
+import "./style/swiperActual.css";
+
+SwiperCore.use([Navigation]);
 
 export default function App() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [findProduct, setFindProduct] = useState();
   const [slidesPerView, setSlidesPerView] = useState(4);
 
   const updateSlidesPerView = () => {
@@ -45,33 +44,24 @@ export default function App() {
     setFilteredProducts(data.filter((item) => item.type === "actual"));
   }, [data]);
 
-  function fetchProduct(target) {
-    const product = data.find((item) => item.name === target);
-    if (product) {
-      navigate(`/${product.catigory}/${product.name}`);
-    }
-  }
-
   return (
-    <section className="swiper">
+    <section className="swiper-container">
       <div className="swiper__title">
         <h2>Актуальные предложения</h2>
       </div>
+      <div className="swiper-button-next"></div>
+      <div className="swiper-button-prev"></div>
       <Swiper
-        navigation={true}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
         slidesPerView={slidesPerView}
         spaceBetween={50}
-        modules={[Navigation]}
         className="mySwiper"
       >
         {filteredProducts.map((item) => (
-          <SwiperSlide
-            id="slide"
-            key={item.id}
-            onClick={() => {
-              fetchProduct(item.name);
-            }}
-          >
+          <SwiperSlide id="slide" key={item.id}>
             <ProductItem product={item} />
           </SwiperSlide>
         ))}

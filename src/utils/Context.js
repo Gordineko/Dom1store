@@ -7,10 +7,17 @@ export const Context = (props) => {
   const [user, setUser] = useState({ email: "" });
   const [search, setSearch] = useState([]);
   const [basket, setBasket] = useState([]);
+  const [favored, setFavored] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem("user") != null) {
       setUser(JSON.parse(localStorage.getItem("user")));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("likes") != null) {
+      setFavored(JSON.parse(localStorage.getItem("likes")));
     }
   }, []);
 
@@ -21,6 +28,8 @@ export const Context = (props) => {
     setSearch,
     basket,
     setBasket,
+    favored,
+    setFavored,
   };
 
   return (

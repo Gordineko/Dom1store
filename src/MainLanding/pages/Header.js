@@ -17,7 +17,8 @@ function Header() {
     setIsActive(!isActive);
   }
 
-  const toggleClass = () => {
+  const toggleClass = (e) => {
+    e.stopPropagation();
     setIsActive(!isActive);
   };
   return (

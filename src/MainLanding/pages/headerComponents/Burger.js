@@ -22,24 +22,29 @@ function Burger({ isActive, handleClick, AuthClick }) {
         <h1>Dom1store</h1>
         <button onClick={handleClick}>x</button>
       </div>
-      <div className="burger-menu__profile">
-        <div className="burger-menu__profile_img">
-          <img src={prof} alt="404" />
-        </div>
-        {user.email.length ? (
+
+      {user.email.length ? (
+        <div
+          className="burger-menu__profile"
+          onClick={() => navigate("/personal")}
+        >
+          <div className="burger-menu__profile_img">
+            <img src={prof} alt="404" />
+          </div>
           <div className="profile__content">
-            <div
-              className="profile__content_txt"
-              onClick={() => navigate("/personal")}
-            >
+            <div className="profile__content_txt">
               <div className="profile__content_reg">
                 <span>Личный кобинет</span>
               </div>
-              
             </div>
             <span>Вы успешно авторизованы</span>
           </div>
-        ) : (
+        </div>
+      ) : (
+        <div className="burger-menu__profile" onClick={AuthClick}>
+          <div className="burger-menu__profile_img">
+            <img src={prof} alt="404" />
+          </div>
           <div className="profile__content">
             <div className="profile__content_txt" onClick={AuthClick}>
               <div className="profile__content_login">
@@ -51,8 +56,9 @@ function Burger({ isActive, handleClick, AuthClick }) {
             </div>
             <span>Авторизуйтесь для получения расширеных возможностей</span>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
       <div className="burger-menu__sett">
         <ul>
           <li>

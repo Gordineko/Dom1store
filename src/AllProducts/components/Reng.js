@@ -3,9 +3,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./reng.css";
 
-function Reng() {
-  const [values, setValues] = useState([5000, 55000]);
-
+function Reng({ values, setValues }) {
   const handleSliderChange = (newValues) => {
     setValues(newValues);
   };
@@ -32,7 +30,7 @@ function Reng() {
       </div>
       <Slider
         min={0}
-        max={60000}
+        max={500000}
         step={15}
         value={values}
         onChange={handleSliderChange}
