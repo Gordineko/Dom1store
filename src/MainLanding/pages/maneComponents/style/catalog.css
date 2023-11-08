@@ -15,9 +15,9 @@
   justify-content: space-between;
 }
 .catalog__title span {
-  color: #725fee;
+  color: #797979;
   font-weight: 700;
-  cursor: pointer;
+  pointer-events: none;
 }
 .catalog__list_item {
   width: 245px;
@@ -39,6 +39,12 @@
 }
 
 @media (max-width: 1250px) {
+  .catalog__title span {
+    pointer-events: all;
+    color: #725fee;
+    font-weight: 700;
+    cursor: pointer;
+  }
   .open {
     max-height: 1200px;
   }

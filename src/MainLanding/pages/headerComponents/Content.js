@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 
-import like from "../../image/icone/like.png";
-import shop from "../../image/icone/shop.png";
-import stat from "../../image/icone/statistic.png";
+import like from "../../image/icone/like (2).png";
+import shop from "../../image/icone/shopping-cart.png";
+import stat from "../../image/icone/statistics.png";
 import serch from "../../image/icone/search.png";
 import log from "../../image/icone/dominoes.png";
 import menu from "../../image/icone/menu.png";
@@ -14,7 +14,7 @@ import { CustomContext } from "../../../utils/Context";
 
 function Content({ handleClick }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const { search, setSearch, favored, setFavored } = useContext(CustomContext);
+  const { setSearch, favored, count } = useContext(CustomContext);
   const [data, setData] = useState([]);
   const [products, setProducts] = useState({});
   const [favoredLenght, setFavoredLenght] = useState("");
@@ -23,6 +23,10 @@ function Content({ handleClick }) {
 
   useEffect(() => {
     fetchData();
+    const products = JSON.parse(localStorage.getItem("search"));
+    if (products) {
+      setSearch(products);
+    }
   }, []);
 
   useEffect(() => {
@@ -60,7 +64,8 @@ function Content({ handleClick }) {
     if (products.length > 0) {
       localStorage.removeItem("search");
       setSearch(products);
-      navigate("/search");
+      setProducts([]);
+      navigate(`/search/${searchTerm}`);
       localStorage.setItem("search", JSON.stringify(products));
     } else return;
   }
@@ -73,6 +78,14 @@ function Content({ handleClick }) {
 
   return (
     <section className="header-content-undrilne">
+      {products.length > 0 && (
+        <div
+          onClick={() => {
+            setProducts([]);
+          }}
+          className="overlay__inp"
+        ></div>
+      )}
       <div className="header__content container">
         <div
           className="header__logo"
@@ -98,7 +111,7 @@ function Content({ handleClick }) {
         </div>
         <div className="header__search">
           <input
-            placeholder="Поиск по товарам"
+            placeholder="Поиск"
             value={searchTerm}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
@@ -109,22 +122,40 @@ function Content({ handleClick }) {
 
           {products.length > 0 && (
             <div className="header__search-products">
-              {products.map((item) => (
-                <div
-                  className="search-product"
-                  key={item.id}
-                  onClick={() => {
-                    oppenSerchProduct(item.catigory, item.name);
-                  }}
-                >
-                  <img
-                    className="search-product__img"
-                    src={item.img}
-                    alt="404"
-                  />
-                  <div>{item.name}</div>
-                </div>
-              ))}
+              {products.map((item) => {
+                const costs = parseFloat(item.cost.replace(/[ ,]/g, ""));
+                const buyin = Math.round(costs - costs * item.discount);
+                const percent = item.discount * 100;
+                return (
+                  <div
+                    className="search-product"
+                    key={item.id}
+                    onClick={() => {
+                      oppenSerchProduct(item.catigory, item.name);
+                    }}
+                  >
+                    <img
+                      className="search-product__img"
+                      src={item.img}
+                      alt="404"
+                    />
+                    <div className="search-product__content">
+                      <div className="search-product__txt-name">
+                        <span>{item.name}</span>
+                      </div>
+
+                      <div className="search-product__cost">
+                        <span className="search-product__txt-cost">
+                          {item.cost}
+                        </span>
+                        <span className="search-product__txt-sell">
+                          {percent === 0 ? "" : item.cost}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
@@ -132,9 +163,23 @@ function Content({ handleClick }) {
           <button className="header__work__btn-stat">
             <img src={stat} alt="404" />
           </button>
-          <button className="header__work__btn-shop">
+          <button
+            className="header__work__btn-shop"
+            onClick={() => {
+              navigate("/basket");
+            }}
+          >
             <img src={shop} alt="404" />
-          </button>{" "}
+            <div
+              className={
+                count > 0
+                  ? "header__work_shop-img-after"
+                  : "header__work_shop-img-after off"
+              }
+            >
+              {count}
+            </div>
+          </button>
           <button
             className="header__work__btn-like"
             onClick={() => {

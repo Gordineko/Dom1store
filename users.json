@@ -2,43 +2,11 @@
   "users": [
     {
       "email": "Rebekah.Parisian@yahoo.com",
-      "password": "$2a$10$jCL./qcomhFEjKT7b43jGe1KQ6tCUmsJmURInWa.hIBZIlRbAGV2i",
+      "password": "$2a$10$YHb4aByXcrvVmuozK2OjrOiBiJKxMMBST8WWMcE75NWC7JcIfoZ0G",
       "name": "Данил",
       "surname": "Гордиенко",
       "phoneNamber": "+380676400427",
       "id": 1
-    },
-    {
-      "email": "Rebeksah.Parisian@yahoo.com",
-      "password": "$2a$10$twyCHDIeBxw.YZWHiUjsPuto25rf64GN/LY1NZrOaufixJwEFxaFu",
-      "name": "Данил",
-      "surname": "Гордиенко",
-      "phoneNamber": "+380676400427",
-      "id": 2
-    },
-    {
-      "email": "2018danil@gmail.com",
-      "password": "$2a$10$meVqqcqUmtkTVxm2TidtBe2yf7NjwQPdPsJFARvgpyuMhhbnbCN6m",
-      "name": "Данил",
-      "surname": "Гордиенко",
-      "phoneNamber": "+380676400427",
-      "id": 3
-    },
-    {
-      "email": "danilpups2@gmail.com",
-      "password": "$2a$10$G3HFk9gmYlv8c.qrS2eT4.SLfIk2qN4RqhjpwzsSxdQ9SkwgRo/eq",
-      "name": "Данил",
-      "surname": "Гордиенко",
-      "phoneNamber": "+380676400427",
-      "id": 4
-    },
-    {
-      "email": "danilpus2@gmail.com",
-      "password": "$2a$10$mgFKAp1y0..bBgug1hz83e2uB1Y5lEx.I4GHvGQ.6N2o5gf5Q7o1y",
-      "name": "Данил",
-      "surname": "Гордиенко",
-      "phoneNamber": "+380676400427",
-      "id": 5
     }
   ]
 }

@@ -85,13 +85,23 @@ function Burger({ isActive, handleClick, AuthClick }) {
         </ul>
       </div>
       <ul className="burger-menu__list">
-        <li className="burger-menu__list-item">
-          <span>Каталог товаров</span>
+        <li
+          className="burger-menu__list-item"
+          onClick={() => {
+            navigate("/like");
+          }}
+        >
+          <span>Понравившиеся товары</span>
         </li>
         <li className="burger-menu__list-item">
           <span>Справочный центр</span>
         </li>
-        <li className="burger-menu__list-item">
+        <li
+          onClick={() => {
+            navigate("/basket");
+          }}
+          className="burger-menu__list-item"
+        >
           <span>Корзина</span>
         </li>
         <li className="burger-menu__list-item">

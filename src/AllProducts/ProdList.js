@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../MainLanding/pages/Header";
-import "./products.css";
+import "./css/products.css";
 import Renge from "./components/Reng";
-import stat from "../MainLanding/image/icone/statistic.png";
-import like from "../MainLanding/image/icone/like.png";
 import Footer from "../MainLanding/pages/Footer";
 import ProductItem from "./components/ProductItem";
-import Loader from "../MainLanding/Loader";
-// import Footer from "../MainLanding/pages/Footer";
+import Sort from "./components/Sort";
 
 function Prod() {
   const { type } = useParams();
   const [products, setProducts] = useState([]);
   const [filteredProduct, setFilteredProduct] = useState([]);
-
-  const [values, setValues] = useState([500, 150000]);
+  const [values, setValues] = useState([0, 500000]);
+  const [sortBy, setSortBy] = useState(null);
+  const [activeSort, setActiveSort] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +27,7 @@ function Prod() {
     };
     fetchData();
   }, []);
+
   useEffect(() => {
     const filteredByCategory = products.filter(
       (item) => item.catigory === type
@@ -40,35 +39,69 @@ function Prod() {
       return cost >= values[0] && cost <= values[1];
     });
 
-    setFilteredProduct(filteredByValues);
+    let sortedProducts = [...filteredByValues];
 
-    console.log(filteredProduct);
-  }, [products, type, values]);
+    if (sortBy === "priceAscending") {
+      sortedProducts.sort((a, b) => {
+        const costA = parseFloat(a.cost.replace(/[ ,]/g, ""));
+        const costB = parseFloat(b.cost.replace(/[ ,]/g, ""));
+        return costA - costB;
+      });
+    } else if (sortBy === "priceDescending") {
+      sortedProducts.sort((a, b) => {
+        const costA = parseFloat(a.cost.replace(/[ ,]/g, ""));
+        const costB = parseFloat(b.cost.replace(/[ ,]/g, ""));
+        return costB - costA;
+      });
+    } else if (sortBy === "stock") {
+      sortedProducts.sort((a, b) => {
+        if (a.discount === "" && b.discount !== "") {
+          return 1;
+        } else if (a.discount !== "" && b.discount === "") {
+          return -1;
+        }
+      });
+    }
+
+    setFilteredProduct(sortedProducts);
+  }, [products, type, values, sortBy]);
+
+  const handleSort = useCallback((sortType) => {
+    setSortBy(sortType);
+  }, []);
+  const SortOpen = () => {
+    setActiveSort(!activeSort);
+  };
 
   return (
     <>
+      {activeSort && <div className="overlay" onClick={SortOpen}></div>}
       <div className="products-list">
         <Header />
         <div className="container products_pad">
-          <div className="products__sort">
-            <h1>{type}</h1>
-            <Renge values={values} setValues={setValues} />
-            <p> Цвет родукта</p>
-            <div className="products__memory">
-              <p>Встроенная память</p>
-              <p></p>
-
-              <div className="products__memory_btn_group">
-                <button className="products__memory_btn">128 гб</button>
-                <button className="products__memory_btn">256 гб</button>
-                <button className="products__memory_btn">1 тб</button>
-              </div>
+          <div className={activeSort ? "active-sort " : "products__sort"}>
+            <div className="products_pad-prew">
+              <h1>{type}</h1>
+              <button
+                className={
+                  activeSort
+                    ? "products_pad-prew_btn"
+                    : "products_pad-prew_btn close "
+                }
+                onClick={SortOpen}
+              >
+                x
+              </button>
             </div>
+
+            <Renge values={values} setValues={setValues} />
+            <Sort handleSort={handleSort} />
           </div>
           <div className="products__catalog">
             <div className="products__sorting">
-              <h1>{type}</h1>
-              <button className="products__sorting-btn">Отсортировать</button>
+              <button className="products__sorting-btn" onClick={SortOpen}>
+                Отсортировать
+              </button>
             </div>
             <ul className="products">
               {filteredProduct.map((product) => (

@@ -105,6 +105,18 @@
 .product__description_info {
   display: flex;
 }
+.product__title_cost {
+  font-size: 18px;
+  font-weight: 700;
+}
+.product__title_cost.with-discount {
+  color: rgb(83, 83, 83);
+  position: absolute;
+  top: -29px;
+  left: 97px;
+  -webkit-text-decoration: line-through 1.5px;
+  text-decoration: line-through 1.5px;
+}
 
 @media (max-width: 1250px) {
   .products__photo_preview {

@@ -5,11 +5,11 @@ import purpLike from "../../MainLanding/image/icone/purp-heart.png";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CustomContext } from "../../utils/Context";
+import axios from "axios";
 
 function ProductItem(props) {
-  const { favored, setFavored } = useContext(CustomContext);
+  const { favored, setFavored, basket, setBasket } = useContext(CustomContext);
   const [isFavored, setisFavored] = useState(false);
-
   const [focus, setFocus] = useState();
 
   const { product } = props;
@@ -44,6 +44,29 @@ function ProductItem(props) {
       if (!isAlreadyLiked) {
         setFavored([...favored, product]);
         localStorage.setItem("likes", JSON.stringify([...favored, product]));
+      }
+    }
+  }
+  function BuyProduct(product, buttonIndex, e) {
+    e.stopPropagation();
+
+    if (typeof product === "object" && product !== null) {
+      const existingProductIndex = basket.findIndex(
+        (basketProduct) => basketProduct.id === product.id
+      );
+
+      if (existingProductIndex !== -1) {
+        const updatedBasket = [...basket];
+        updatedBasket[existingProductIndex].count += 1;
+        setBasket(updatedBasket);
+        localStorage.setItem("baskets", JSON.stringify(updatedBasket));
+      } else {
+        const newProduct = { ...product, count: 1 };
+        setBasket([...basket, newProduct]);
+        localStorage.setItem(
+          "baskets",
+          JSON.stringify([...basket, newProduct])
+        );
       }
     }
   }
@@ -84,7 +107,16 @@ function ProductItem(props) {
           </p>
         </div>
         <div className="product_item_do">
-          <button className="product__btn">В корзину</button>
+          <button
+            className="product__btn"
+            onClick={(e) => {
+              if (BuyProduct(product, product.id, e) === false) {
+                e.preventDefault();
+              }
+            }}
+          >
+            В корзину
+          </button>
           <img src={stat} alt="404" />
           <img
             src={isFavored ? purpLike : blackLike}

@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import Header from "../MainLanding/pages/Header";
-import "./products.css";
+import "./css/products.css";
 import Renge from "./components/Reng";
-import stat from "../MainLanding/image/icone/statistic.png";
-import like from "../MainLanding/image/icone/like.png";
 import Footer from "../MainLanding/pages/Footer";
 import ProductItem from "./components/ProductItem";
-import Loader from "../MainLanding/Loader";
 import { useContext } from "react";
 import { CustomContext } from "../utils/Context";
-// import Footer from "../MainLanding/pages/Footer";
+import Sort from "./components/Sort";
+import { useParams } from "react-router-dom";
+import { useCallback } from "react";
 
 function ProdListSerch() {
+  const { inquiry } = useParams();
   const { search } = useContext(CustomContext);
-  const [isLoading, setIsLoading] = useState(true);
   const [searchResults, setSearchResults] = useState([]);
-  const [values, setValues] = useState([500, 150000]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [values, setValues] = useState([0, 500000]);
+  const [sortBy, setSortBy] = useState(null);
 
   useEffect(() => {
     const parsedSearch = JSON.parse(localStorage.getItem("search"));
@@ -30,35 +28,55 @@ function ProdListSerch() {
       const cost = Number(parsCost);
       return cost >= values[0] && cost <= values[1];
     });
+    let sortedProducts = [...filteredByValues];
 
-    setFilteredProducts(filteredByValues);
-  }, [values, searchResults]);
-
+    if (sortBy === "priceAscending") {
+      sortedProducts.sort((a, b) => {
+        const costA = parseFloat(a.cost.replace(/[ ,]/g, ""));
+        const costB = parseFloat(b.cost.replace(/[ ,]/g, ""));
+        return costA - costB;
+      });
+    } else if (sortBy === "priceDescending") {
+      sortedProducts.sort((a, b) => {
+        const costA = parseFloat(a.cost.replace(/[ ,]/g, ""));
+        const costB = parseFloat(b.cost.replace(/[ ,]/g, ""));
+        return costB - costA;
+      });
+    } else if (sortBy === "stock") {
+      sortedProducts.sort((a, b) => {
+        if (a.discount === "" && b.discount !== "") {
+          return 1;
+        } else if (a.discount !== "" && b.discount === "") {
+          return -1;
+        }
+      });
+    }
+    setSearchResults(sortedProducts);
+  }, [values, sortBy]);
+  const handleSort = useCallback((sortType) => {
+    setSortBy(sortType);
+  }, []);
   return (
     <>
       <div className="products-list">
         <Header />
         <div className="container products_pad">
           <div className="products__sort">
-            <h1></h1>
             <Renge values={values} setValues={setValues} />
-            <p> Цвет родукта</p>
-            <div className="products__memory">
-              <p>Встроенная память</p>
-              <div className="products__memory_btn_group">
-                <button className="products__memory_btn">128 гб</button>
-                <button className="products__memory_btn">256 гб</button>
-                <button className="products__memory_btn">1 тб</button>
-              </div>
-            </div>
+            <Sort handleSort={handleSort} />
           </div>
           <div className="products__catalog">
             <div className="products__sorting">
-              <h1></h1>
               <button className="products__sorting-btn">Отсортировать</button>
             </div>
+            <div className="products__catalog-title">
+              <h2>
+                Все подходящие товары по вашему запросу "
+                <span className="catalog-title-bold">{inquiry}</span>"
+              </h2>
+            </div>
             <ul className="products">
-              {filteredProducts.map((product) => (
+              {searchResults.map((product) => (
                 <ProductItem key={product.id} product={product} />
               ))}
             </ul>

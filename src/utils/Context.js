@@ -8,6 +8,15 @@ export const Context = (props) => {
   const [search, setSearch] = useState([]);
   const [basket, setBasket] = useState([]);
   const [favored, setFavored] = useState([]);
+  const [count, setCount] = useState([]);
+
+  useEffect(() => {
+    let totalCount = 0;
+    basket.map((item) => {
+      totalCount += item.count;
+    });
+    setCount(totalCount);
+  }, [basket]);
 
   useEffect(() => {
     if (localStorage.getItem("user") != null) {
@@ -21,6 +30,12 @@ export const Context = (props) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem("baskets") != null) {
+      setBasket(JSON.parse(localStorage.getItem("baskets")));
+    }
+  }, []);
+
   const value = {
     user,
     setUser,
@@ -30,6 +45,8 @@ export const Context = (props) => {
     setBasket,
     favored,
     setFavored,
+    count,
+    setCount,
   };
 
   return (

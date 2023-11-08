@@ -10,6 +10,7 @@ import Sms from "./PersonalArea/components/Sms";
 import Profile from "./PersonalArea/components/Profile";
 import ProdListSerch from "./AllProducts/ProdListSerch";
 import Like from "./ToolsPages/pages/Like";
+import Basket from "./ToolsPages/pages/Basket";
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
         <Route path="stock" element={<Stock />} />
         <Route path="sms" element={<Sms />} />
       </Route>
-      <Route path="/search" element={<ProdListSerch />} />
+      <Route path="/search/:inquiry" element={<ProdListSerch />} />
       <Route path="/like" element={<Like />} />
+      <Route path="/basket" element={<Basket />} />
     </Routes>
   );
 }
